@@ -12,6 +12,7 @@ Here are the rules:
 P1/l1
 P1/l2
 P1/l3
+P1/L4
 P1/l4 corrected
 P1/l5
 
@@ -43,38 +44,55 @@ Seeing that, the challenges are:
 **rules**
 
 - You can use `git rebase` with options as much as you want
-- You can use `git rebase -i` only once
-- You can commit anything
+- You can't use `cherry-pick`
+- you have to merge into `poem`
+- level 1: You can't commit anything
+- level 2: You have to preserve merges
 
 **help**
+
+- Start in order: `paragraph_1` / `paragraph_2` / `paragraph_3` / `paragraph_4` / `Title`
+- Some of these command are really helpful:
+  - `git log`
+  - `git reflog`
+  - `git reset --hard`
 
 **final poem**
 
 ```
-The Road Not Taken
-BY ROBERT FROST
-
-Two roads diverged in a yellow wood,
-And sorry I could not travel both
-And be one traveler, long I stood
-And looked down one as far as I could
-To where it bent in the undergrowth;
-
-Then took the other, as just as fair,
-And having perhaps the better claim,
-Because it was grassy and wanted wear;
-Though as for that the passing there
-Had worn them really about the same,
-
-And both that morning equally lay
-In leaves no step had trodden black.
-Oh, I kept the first for another day!
-Yet knowing how way leads on to way,
-I doubted if I should ever come back.
-
-I shall be telling this with a sigh
-Somewhere ages and ages hence:
-Two roads diverged in a wood, and I—
-I took the one less traveled by,
-And that has made all the difference.
+1. The Road Not Taken
+2. BY ROBERT FROST
+3.
+4. Two roads diverged in a yellow wood,
+5. And sorry I could not travel both
+6. And be one traveler, long I stood
+7. And looked down one as far as I could
+8. To where it bent in the undergrowth;
+9.
+10. Then took the other, as just as fair,
+11. And having perhaps the better claim,
+12. Because it was grassy and wanted wear;
+13. Though as for that the passing there
+14. Had worn them really about the same,
+15.
+16. And both that morning equally lay
+17. In leaves no step had trodden black.
+18. Oh, I kept the first for another day!
+19. Yet knowing how way leads on to way,
+20. I doubted if I should ever come back.
+21.
+22. I shall be telling this with a sigh
+23. Somewhere ages and ages hence:
+24. Two roads diverged in a wood, and I—
+25. I took the one less traveled by,
+26. And that has made all the difference.
 ```
+
+**more help**
+Don't read this, if you don't want to much help.
+
+P1: `git rebase -i` expected
+P2: `git rebase` expected
+P3: `git reset -hard` expected
+P4: `git rebase -onto` expected
+title: `git rebase -i` expected
