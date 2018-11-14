@@ -35,10 +35,11 @@ Author
 ```
 
 Seeing that, the challenges are:
-- For P1, use the correct commit for `l4` and not take the `bad` commit
-- For P3, handle 3 different branches
+- For P1, use the correct commit for `l4` (corrected) and not take the `bad` commit
+- For P2, just rebase
+- For P3, handle 3 different branches, don't take the bad commit on one of the branches
 - For P4, put the commit in the correct order `l1` before `l2`
-- For `bad` branch, do not use any of the commits
+- For `bad` branch, do not merge any of the commits when merging 'P4'
 - For `title` branch, squash the 2 commits for titles
 
 **rules**
