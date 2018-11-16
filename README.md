@@ -109,9 +109,9 @@ title: `git rebase -i` expected
 
 **starting**
 
-First thing first, you would need to fetch all remotes branches so you have a visibility on the branches that exist.
+First thing first, you would have to fetch all remotes branches so you have a visibility on the branches that exist.
 
-Ok let's proceed in order.
+Ok now let's start and proceed in order.
 
 - We start on `poem` branch
 
@@ -126,14 +126,14 @@ $ git checkout poem
 - let's checkout on paragraph_1
 
 ```
-$ git checkout poem
+$ git checkout paragraph_1
 ```
 
  with `git log` we see that there is a `bad` commit to remove on the branch.
 
  I use `git rebase interative` to drop this commit.
 
- Start it with the last commit you want to retain as-is:
+ The git-rebase doc explains "Start it with the last commit you want to retain as-is":
 
 ```
 $ git rebase -i <after-this-commit>
@@ -147,9 +147,9 @@ $ git rebase -i HEAD~2
 
 So I have the possibility to edit the before last commit, which is the `bad` one.
 
-The VIM table opens, and then I `edit` the `pick` option in front on the `bad` commit and change it to `drop`. Many informations are provided below for the different options that can be applied to a `rebase`. (edit, drop, squash...)
+The VIM table opens, and then I `edit` the `pick` option in front on the `bad` commit and change it to `drop`. Many informations are provided just under for the different options that can be applied to a `rebase`. (edit, drop, squash...)
 
-Then I have a conflit to resolve. The terminal tells me that:
+Then I have a conflict to resolve. The terminal tells me that:
 
 ```
 Auto-merging poem.txt
@@ -176,9 +176,9 @@ $ git rebase --continue
 Successfully rebased and updated refs/heads/paragraph_1.
 ```
 
-Then I can check that `bad` commit disappeared with `git log`
+Then I check that `bad` commit has disappeared with `git log`
 
-I can make a simple rebase to check that poem and paragraph_1 are up to date
+I can make a simple rebase to check that `poem` and `paragraph_1` branches are up to date
 
 ```
 $ git rebase poem
@@ -204,7 +204,7 @@ I checkout to the paragraph_2
 $ git checkout paragraph_2
 ```
 
-This only thing to do now is to rebase poem into paragraph_2 so the changes from paragraph_1 we just merged into poem are integrated into paragraph_2.
+This only thing to do here is to rebase poem into `paragraph_2` so the changes from `paragraph_1` we just merged into poem are integrated into paragraph_2.
 
 ```
 $ git rebase poem
@@ -225,14 +225,14 @@ You can instead skip this commit: run "git rebase --skip".
 To abort and get back to the state before "git rebase", run "git rebase --abort".
 ```
 
-A conflict has to be resolved. Which is normal as in the paragraph_1 there was a correction on a line 4 (commit `P1/l4 corrected`) that was not in paragraph_2. So now, git needs to know which line is the right one.
+A conflict has to be resolved. Which is normal as in the `paragraph_1` there was a correction on a line 4 (commit `P1/l4 corrected`) that was not in `paragraph_2`. So now, git needs to know which line is the right one.
 
 ```
 $ git add poem.txt
 $ git rebase --continue
 ```
 
-Then I can merge
+Then we can merge
 ```
 $ git checkout poem
 $ git merge paragraph_2
@@ -245,15 +245,16 @@ Fast-forward
 
 **paragraphe 3**
 
-Many branches on paragraph_3.
+There are 3 branches related to the paragraph 3.
 
 ```
 $ git log
 ```
 
-I have commit `P3/l1` and `P3/l2` on `paragraph_3_bis` so I need to catch the `P3/l3` (which is on paragraph_3_bis), `P3/l4`(which is on paragraph_3_bis), `P3/l5`(which is on paragraph_3_bis_bis).
+I have the commits `P3/l1` and `P3/l2` on `paragraph_3_bis`.
+So I need to catch the `P3/l3` (which is on paragraph_3_bis), `P3/l4`(which is on paragraph_3_bis), `P3/l5`(which is on paragraph_3_bis_bis).
 
-Nothing special happens on paragraph_3_bis, I can do a simple rebase and merge it to paragraph_3
+Nothing special happens on `paragraph_3_bis`, I can do a simple rebase and merge it to `paragraph_3`
 
 ```
 $ git checkout paragraph_3_bis
@@ -267,20 +268,21 @@ Fast-forward
  1 file changed, 2 insertions(+)
 ```
 
-So now with a `git log` we can see that I have l1, l2, l3 and l4, on paragraph_3. I just need the l5.
+With a `git log` we can see that I have `l1`, `l2`, `l3` and `l4`, on `paragraph_3`. I just need the `l5`.
 
 ```
 $ git checkout paragraph_3_bis_bis
 $ git log
 ```
 
-The git log shows that there is a `bad` commit (last commit of the branch). I can use a `git reset --hard HEAD~` or a rebase interactive. Let's do the last one.
+The git log shows that there is a `bad` commit (last commit of the branch).
+I can use a `git reset --hard HEAD~` or a rebase interactive. Let's do the last one.
 
 ```
 $ git rebase -i HEAD~2
 ```
 
-In the command line, I say drop the `bad` commit. Once it is done, I can rebase this branch with paragraph_3 so it will be up to date before merging.
+In the command line, we specify `drop` for the `bad` commit. Once it is done, we can rebase this branch with `paragraph_3` so it will be up to date before merging.
 
 ```
 $ git rebase paragraph_3
@@ -301,7 +303,7 @@ You can instead skip this commit: run "git rebase --skip".
 To abort and get back to the state before "git rebase", run "git rebase --abort".
 ```
 
-Once conflict is resolved, I can merge paragraph_3_bis_bis into paragraph_3, then to poem. (I can also directy merge paragraph_3_bis_bis into poem after rebasing as there are now the same)
+Once conflict is resolved, we can merge `paragraph_3_bis_bis` into `paragraph_3`, then to `poem`. (I can also directly merge `paragraph_3_bis_bis` into `poem` after rebasing as there are now the same)
 
 ```
 $ git add poem.txt
@@ -351,15 +353,15 @@ Fast-forward
 $ git checkout paragraph_4
 ```
 
-There is two commits that are not in the correct order. We can see that with a `git log`.
+With a `git log`, we see that there is two commits that are not in the correct order
 
 ```
 git rebase -i HEAD~5
 ```
 
-I use a rebase interactive to change the order of the two commit (just change the line order)
+We use a rebase interactive to change the order of the two commits (just change the line order)
 
-Then, resolve the conflicts (there are two in a row)
+Then, we resolve the conflicts (there are two in a row)
 
 ```
 Auto-merging poem.txt
@@ -380,13 +382,14 @@ Successfully rebased and updated refs/heads/paragraph_4.
 
 Then we see that `paragraph_4` inherits from a `bad_branch` that we don't want to merge into poem.
 
-Be sure that `bad_branch` is in local otherwise the command will fail. (you can checkout bad_branch and come back to be sure)
+Be sure that `bad_branch` is in local otherwise the command will fail.
+(You can checkout bad_branch and come back to be sure)
 
 ```
 $ git rebase --onto poem bad_branch paragraph_4
 ```
 
-Then there are many conflicts that have to be resolved. Then we can merge.
+There are many conflicts that have to be resolved. Then we can merge.
 ```
 First, rewinding head to replay your work on top of it...
 Applying: P4/L1
@@ -420,6 +423,6 @@ Fast-forward
 
 The last step is to squash two commits together (well, one into the previous: `Title incomplete` and `Title`). We can do this with a `git rebase interactive` using the `squash` command.
 
-Then we can rebase this branch and merge it into poem safely.
+Finally we can rebase this branch and merge it into poem safely.
 
 Once poem is clean, we can deploy on Master :)
