@@ -1,10 +1,19 @@
-# workshop-git-rebase
+# Workshop `git rebase`
+
+## Learn `git rebase` with a poem
 
 **The objective of this kata is to learn how to use git rebase command.**
 
-Here are the rules:
+🌲 **set up**
 
-**goal**
+```
+git clone git@github.com:coralieco/workshop-git-rebase.git
+cd workshop-git-rebase
+git checkout poem
+git checkout paragraph_1
+```
+🌲 **goal**
+
 - Reconstitute the full poem in correct order
 - The best configuration is to keep the historic in order, such as commit list in order:
 
@@ -39,31 +48,39 @@ Title
 Author
 ```
 
-Seeing that, the challenges are:
-- For P1, use the correct commit for `l4` (corrected) and not take the `bad` commit
-- For P2, just rebase
-- For P3, handle 3 different branches, don't take the bad commit on one of the branches
-- For P4, put the commit in the correct order `l1` before `l2`
-- For `bad` branch, do not merge any of the commits when merging 'P4'
-- For `title` branch, squash the 2 commits for titles
+🌲 **visualize branches**
 
-**rules**
+![](images/schema_git_rebase.jpeg?raw=true)
+
+
+Seeing that, the challenges are:
+
+- For `paragraph_1`, use the correct commit for `l4` (corrected) and not take the `bad` commit
+- For `paragraph_2`, just rebase
+- For `paragraph_3`, manage the 3 different branches, don't take the bad commit on `paragraph_3_bis_bis` branch
+- For `paragraph_4`, put the two first commits in the correct order (`l1` before `l2`)
+- For `bad_branch`, do not merge any of the commits into`poem` when merging `paragraph_4`
+- For `title` branch, squash the 2 commits related to titles
+
+🌲 **rules**
 
 - You can use `git rebase` with options as much as you want
 - You can't use `cherry-pick`
-- you have to merge into `poem`
+- you have to merge into `poem` (do not use `master`)
 - level 1: You can't commit anything
 - level 2: You have to preserve merges
 
-**help**
+🌲 **help**
 
+- There is one commit per line of the poem (except for `paragraph_2` where there is a unique commit): `P1/l3` means this is a line 3 of Paragraph 1.
 - Start in order: `paragraph_1` / `paragraph_2` / `paragraph_3` / `paragraph_4` / `Title`
 - Some of these command are really helpful:
   - `git log`
   - `git reflog`
   - `git reset --hard`
+- Resolve conflict using the final poem below (lines are indicated)
 
-**final poem**
+🌲 **final poem**
 
 ```
 1. The Road Not Taken
@@ -94,20 +111,23 @@ Seeing that, the challenges are:
 26. And that has made all the difference.
 ```
 
-**more help**
+To resolve conflicts, information about lines number can be very useful.
+
+🌲 **more help**
+
 Don't read this, if you don't want too much help.
 
-P1: `git rebase -i` expected
-P2: `git rebase` expected
-P3: `git reset -hard` expected
-P4: `git rebase -onto` expected
-title: `git rebase -i` expected
+- `paragraph_1`: `git rebase -i` expected
+- `paragraph_2`: `git rebase` expected
+- `paragraph_3`: `git rebase -i` expected - `git reset -hard` can be used
+- `paragraph_4`: `git rebase -onto` expected
+- `title`: `git rebase -i` expected
 
 ---
 
 ## Corrections
 
-**starting**
+🌲 **starting**
 
 First thing first, you would have to fetch all remotes branches so you have a visibility on the branches that exist.
 
@@ -121,7 +141,7 @@ $ git checkout poem
 
 `git log` can teach us that there is already lines from paragraph_1 on the branch.
 
-**paragraphe 1**
+🌲 **paragraphe 1**
 
 - let's checkout on paragraph_1
 
@@ -196,7 +216,7 @@ Fast-forward
  1 file changed, 2 insertions(+), 1 deletion(-)
 ```
 
-**paragraphe 2**
+🌲 **paragraphe 2**
 
 I checkout to the paragraph_2
 
@@ -243,7 +263,7 @@ Fast-forward
  1 file changed, 6 insertions(+)
 ```
 
-**paragraphe 3**
+🌲 **paragraphe 3**
 
 There are 3 branches related to the paragraph 3.
 
@@ -347,7 +367,7 @@ Fast-forward
  1 file changed, 6 insertions(+)
 ```
 
-**paragraphe 4**
+🌲 **paragraphe 4**
 
 ```
 $ git checkout paragraph_4
@@ -419,10 +439,16 @@ Fast-forward
  1 file changed, 6 insertions(+)
 ```
 
-**title**
+🌲 **title**
 
 The last step is to squash two commits together (well, one into the previous: `Title incomplete` and `Title`). We can do this with a `git rebase interactive` using the `squash` command.
 
 Finally we can rebase this branch and merge it into poem safely.
 
 Once poem is clean, we can deploy on Master :)
+
+---
+
+## Conclusion
+
+Hope you had fun and learnt more about `git rebase` with this workshop !
