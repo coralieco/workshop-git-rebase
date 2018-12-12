@@ -78,7 +78,7 @@ Seeing that, the challenges are:
   - `git log`
   - `git reflog`
   - `git reset --hard`
-- Resolve conflict using the final poem below (lines are indicated)
+- There will be conflicts to resolve ! Do not focus too much on resolving conflicts, this is not the workshop purpose. You can use the final poem below (lines are indicated) to help you out resolving the conflicts..
 
 🌲 **final poem**
 
